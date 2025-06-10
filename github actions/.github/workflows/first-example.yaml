@@ -1,0 +1,15 @@
+name: my-first-workflow
+on: push # defining the trigger , whenever anything is pushed to the repo this will be executed
+
+jobs:
+  first-job: # job name
+    runs-on: ubuntu-latest # define where the job runs
+    steps:
+      - name: Welcome message # step name 
+        run: echo "My first Github Actions Job"
+        
+      - name: list files # step name
+        run: ls # action to list files
+    
+
+    
