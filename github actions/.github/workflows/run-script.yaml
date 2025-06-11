@@ -1,0 +1,19 @@
+name: Running script
+on: push # defining the trigger , whenever anything is pushed to the repo this will be executed
+
+jobs:
+  first-job: # job name
+    runs-on: ubuntu-latest # define where the job runs
+    steps:
+       - name: Check out code # step name
+         uses: actions/checkout@v2 # action to check out the code from the repo
+       - name: Run script # step name
+         run: | #action to run the script
+          chmod +x ./script.sh 
+          ./script.sh  
+
+      #chmod +x ./script.sh # make the script executable
+
+    
+
+      

@@ -1,0 +1,39 @@
+name: Multi-Job Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job1:
+    name: Job 1 - Setup and Create File
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create a File
+        run: echo "This is a shared file" > example.txt
+
+      - name: Upload File as Artifact
+        uses: actions/upload-artifact@v3 # makes the file available for other jobs
+        with:
+          name: shared-file
+          path: example.txt
+
+  job2:
+    name: Job 2 - Use Shared File
+    runs-on: ubuntu-latest
+    needs: job1 # Ensures Job 1 runs first
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download Shared File
+        uses: actions/download-artifact@v3 # Downloads the file created in Job 1
+        with:
+          name: shared-file
+
+      - name: Display File Contents
+        run: cat example.txt

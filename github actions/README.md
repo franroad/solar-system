@@ -8,4 +8,39 @@ Term *action* --> are prebuild reusable automation componentes design for specif
 
 ### STEPS
 1. CREATE A FILE AND A FOLDER ``.github/workflows``
-2. 
+2. DEFINE THE GITHUB ACTION
+```yaml
+name: my-first-workflow
+on: push # defining the trigger , whenever anything is pushed to the repo this will be executed
+
+jobs:
+  first-job: # job name
+    runs-on: ubuntu-latest # define where the job runs
+    steps:
+      - name: Welcome message # step name 
+        run: echo "My first Github Actions Job"
+        
+      - name: list files # step name
+        run: ls # action to list files
+      - name: checkout Repo
+        uses: actions/checkout@v2
+```
+
+### Multiple command single step
+```yaml
+obs:
+  first-job: # job name
+    runs-on: ubuntu-latest # define where the job runs
+    steps:
+
+      - name: checkout Repo
+        uses: actions/checkout@v2
+
+      - name: list and read # step name 
+        run: |
+          echo "My first Github Actions Job"
+          ls
+          cat Readme.md
+      
+
+```

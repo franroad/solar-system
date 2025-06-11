@@ -7,9 +7,11 @@ jobs:
     steps:
       - name: Welcome message # step name 
         run: echo "My first Github Actions Job"
-        
+
       - name: list files # step name
         run: ls # action to list files
+      - name: Check out code # step name
+        uses: actions/checkout@v2 # action to check out the code from the repo
     
 
     
